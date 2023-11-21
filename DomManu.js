@@ -14,7 +14,7 @@ let headertit = document.getElementById("header-title");
 // headertit.style.color = "green"
 
 let list_item = document.getElementsByClassName("list-group-item");
-list_item[2].style.backgroundColor = "green";
+//list_item[2].style.backgroundColor = "green";
 
 //change all element
 
@@ -37,3 +37,24 @@ addli.id = "itemid"
 document.getElementById("itemid").style.fontWeight = "bold"
 document.getElementsByClassName("list-group-item")[4].style.backgroundColor ="red"
 
+
+
+//QuerySelector && QuerySelectorALL
+
+document.querySelector(".list-group-item:first-child").style.color = "red";
+document.querySelector(".list-group-item:last-child").style.color="yellow"
+
+let query = document.querySelector(".list-group-item:nth-child(2)")
+query.style.backgroundColor = "green"
+
+let invisible = document.querySelector(".list-group-item:nth-child(3)")
+invisible.style.visibility = "hidden";
+
+
+document.querySelectorAll(".list-group-item")[1].style.color = "yellow";
+
+let odd = document.querySelectorAll("li:nth-child(odd)");
+
+for(let i=0;i<odd.length;i++){
+    odd[i].style.backgroundColor = "grey"
+}
