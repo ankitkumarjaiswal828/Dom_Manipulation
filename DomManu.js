@@ -35,26 +35,82 @@ addli.className = "list-group-item";
 addli.id = "itemid"
 
 document.getElementById("itemid").style.fontWeight = "bold"
-document.getElementsByClassName("list-group-item")[4].style.backgroundColor ="red"
+//document.getElementsByClassName("list-group-item")[4].style.backgroundColor ="red"
 
 
 
 //QuerySelector && QuerySelectorALL
 
-document.querySelector(".list-group-item:first-child").style.color = "red";
-document.querySelector(".list-group-item:last-child").style.color="yellow"
+// document.querySelector(".list-group-item:first-child").style.color = "red";
+// document.querySelector(".list-group-item:last-child").style.color="yellow"
 
-let query = document.querySelector(".list-group-item:nth-child(2)")
-query.style.backgroundColor = "green"
+// let query = document.querySelector(".list-group-item:nth-child(2)")
+// query.style.backgroundColor = "green"
 
-let invisible = document.querySelector(".list-group-item:nth-child(3)")
-invisible.style.visibility = "hidden";
+// let invisible = document.querySelector(".list-group-item:nth-child(3)")
+// invisible.style.visibility = "hidden";
 
 
-document.querySelectorAll(".list-group-item")[1].style.color = "yellow";
+// document.querySelectorAll(".list-group-item")[1].style.color = "yellow";
 
-let odd = document.querySelectorAll("li:nth-child(odd)");
+// let odd = document.querySelectorAll("li:nth-child(odd)");
 
-for(let i=0;i<odd.length;i++){
-    odd[i].style.backgroundColor = "grey"
-}
+// for(let i=0;i<odd.length;i++){
+//     odd[i].style.backgroundColor = "grey"
+// }
+
+
+
+//Creating Nodes and Modifying Dom
+
+let node = document.querySelector("#items")
+
+//parentElement
+//console.log(node.parentElement)
+//console.log(node.parentElement.parentElement.parentElement)
+
+//parentNode
+//console.log(node.parentNode)
+//console.log(node.parentNode.parentNode.parentNode)
+
+//childNodes
+// console.log(node.childNodes)
+
+//children
+// console.log(node.children)
+// console.log(node.children[2]);
+
+//firstChild
+//console.log(node.firstChild)
+//console.log(node.lastChild)
+// console.log(node.firstElementChild)
+// console.log(node.lastElementChild)
+
+//nextSliblings
+// console.log(node.nextSibling)
+// console.log(node.nextElementSibling)
+
+//previoussiblings
+//console.log(node.previousSibling)
+// console.log(node.previousElementSibling)
+
+//create Element
+
+let createnode = document.createElement('div')
+let txt = document.createTextNode("Hello World!!")
+createnode.appendChild(txt)
+
+createnode.className ="cls"
+createnode.id = 'ids'
+createnode.setAttribute('title',"Dummy")
+console.log(createnode)
+
+let container = document.querySelector('header .container')
+let h1 = document.querySelector('header h1')
+console.log(container)
+container.insertBefore(txt,h1)
+
+let ul = document.querySelector('ul .list-group-item')
+console.log(ul)
+let lis = document.querySelector('ul li')[1]
+ul.insertBefore(txt,lis)
