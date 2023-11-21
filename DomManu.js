@@ -96,21 +96,85 @@ let node = document.querySelector("#items")
 
 //create Element
 
-let createnode = document.createElement('div')
-let txt = document.createTextNode("Hello World!!")
-createnode.appendChild(txt)
+// let createnode = document.createElement('div')
+// let txt = document.createTextNode("Hello World!!")
+// createnode.appendChild(txt)
 
-createnode.className ="cls"
-createnode.id = 'ids'
-createnode.setAttribute('title',"Dummy")
-console.log(createnode)
+// createnode.className ="cls"
+// createnode.id = 'ids'
+// createnode.setAttribute('title',"Dummy")
+// console.log(createnode)
 
-let container = document.querySelector('header .container')
-let h1 = document.querySelector('header h1')
-console.log(container)
-container.insertBefore(txt,h1)
+// let container = document.querySelector('header .container')
+// let h1 = document.querySelector('header h1')
+// console.log(container)
+// container.insertBefore(txt,h1)
 
-let ul = document.querySelector('ul .list-group-item')
-console.log(ul)
-let lis = document.querySelector('ul li')[1]
-ul.insertBefore(txt,lis)
+// let ul = document.querySelector('ul .list-group-item')
+// console.log(ul)
+// let lis = document.querySelector('ul li')[1]
+// ul.insertBefore(txt,lis)
+
+
+
+
+
+//Delete and Edit functionality
+
+let form = document.getElementById("addForm")
+let addList = document.getElementById("items")
+
+addEventListener('submit',addItems)
+addEventListener('click',removeItem)
+addEventListener('click',Edit)
+
+function addItems(e)
+{
+    e.preventDefault()
+    //get input
+    let newItem = document.getElementById("item").value
+
+    //create li
+    let li = document.createElement("li")
+
+    //add class name
+    li.className = "list-group-item"
+
+    //add text node with input value
+    li.appendChild(document.createTextNode(newItem))
+
+    //create delete button
+
+    let deletebtn = document.createElement('button')
+
+    deletebtn.className = "btn btn-danger btn-sm float-right delete";
+
+    deletebtn.appendChild(document.createTextNode('X'))
+
+    li.appendChild(deletebtn)
+
+
+    let editbtn = document.createElement("button");
+
+    editbtn.className = "btn btn-success  btn-sm float-right ";
+
+    editbtn.style.marginRight ="10px"
+
+    editbtn.appendChild(document.createTextNode("Edit"));
+
+    li.appendChild(editbtn);
+
+    addList.appendChild(li)
+}
+
+
+function  removeItem(e){
+
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you sure?')){
+            let li  = e.target.parentElement;
+            addList.removeChild(li)
+        }
+    }
+}
+
