@@ -25,16 +25,16 @@ for(let i=0;i<list_item.length;i++){
 
 
 //add new li tag and child text node
-let li = document.createElement("li")
-let text = document.createTextNode("item 5")
-li.appendChild(text)
-let addli = document.getElementById("items").appendChild(li)
+// let li = document.createElement("li")
+// let text = document.createTextNode("item 5")
+// li.appendChild(text)
+// let addli = document.getElementById("items").appendChild(li)
 
 //set class and id in items5
-addli.className = "list-group-item";
-addli.id = "itemid"
+// addli.className = "list-group-item";
+// addli.id = "itemid"
 
-document.getElementById("itemid").style.fontWeight = "bold"
+// document.getElementById("itemid").style.fontWeight = "bold"
 //document.getElementsByClassName("list-group-item")[4].style.backgroundColor ="red"
 
 
@@ -123,16 +123,20 @@ let node = document.querySelector("#items")
 
 let form = document.getElementById("addForm")
 let addList = document.getElementById("items")
+let filter  =  document.getElementById("filter")
 
+//create event
 addEventListener('submit',addItems)
 addEventListener('click',removeItem)
-addEventListener('click',Edit)
+addEventListener('keyup',filterItems)
 
 function addItems(e)
 {
     e.preventDefault()
     //get input
     let newItem = document.getElementById("item").value
+    let newItem2 = document.getElementById("item2").value;
+
 
     //create li
     let li = document.createElement("li")
@@ -142,6 +146,7 @@ function addItems(e)
 
     //add text node with input value
     li.appendChild(document.createTextNode(newItem))
+    li.appendChild(document.createTextNode(newItem2))
 
     //create delete button
 
@@ -156,7 +161,7 @@ function addItems(e)
 
     let editbtn = document.createElement("button");
 
-    editbtn.className = "btn btn-success  btn-sm float-right ";
+    editbtn.className = "btn btn-success  btn-sm float-right";
 
     editbtn.style.marginRight ="10px"
 
@@ -178,3 +183,30 @@ function  removeItem(e){
     }
 }
 
+
+function filterItems(e)
+{   
+    //convert all text to lowercase
+    let lowertxt   = e.target.value.toLowerCase()
+    //console.log(lowertxt)
+
+    //get li
+    let items = addList.getElementsByTagName('li')
+
+    //convert into array
+
+    Array.from(items).forEach(function(item){
+
+        let itemName = item.firstChild.textContent;
+        let description = item.childNodes[1].textContent
+
+        if(itemName.toLowerCase().indexOf(lowertxt)!=-1 || description.toLowerCase().indexOf(lowertxt)!=-1)
+        {
+            item.style.display = "block"
+        }
+
+        else{
+            item.style.display = "none"
+        }
+    })
+}
